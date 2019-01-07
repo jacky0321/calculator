@@ -1,6 +1,6 @@
-﻿-- MySQL dump 10.13  Distrib 5.5.54, for Win64 (AMD64)
+-- MySQL dump 10.13  Distrib 5.5.54, for Win64 (AMD64)
 --
--- Host: localhost    Database: lesson6
+-- Host: localhost    Database: lesson7
 -- ------------------------------------------------------
 -- Server version	5.5.54
 
@@ -16,58 +16,82 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `index_type`
+-- Table structure for table `food`
 --
 
-DROP TABLE IF EXISTS `index_type`;
+DROP TABLE IF EXISTS `food`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `index_type` (
+CREATE TABLE `food` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
+  `description` varchar(512) DEFAULT NULL,
+  `food_energy` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `index_type`
+-- Dumping data for table `food`
 --
 
-LOCK TABLES `index_type` WRITE;
-/*!40000 ALTER TABLE `index_type` DISABLE KEYS */;
-INSERT INTO `index_type` VALUES (1,'身高',10),(2,'体重',20),(3,'血压',30),(4,'血糖',40),(5,'血脂',50);
-/*!40000 ALTER TABLE `index_type` ENABLE KEYS */;
+LOCK TABLES `food` WRITE;
+/*!40000 ALTER TABLE `food` DISABLE KEYS */;
+INSERT INTO `food` VALUES (1,'方便面','垃圾食品',472),(2,'小米','营养价值很高，含丰富的蛋白质和脂肪和维生素，它不仅供食用，入药有清热、清渴，滋阴，补脾肾和肠胃，利小便、治水泻等功效，又可酿酒',358),(3,'燕麦片','燕麦煮出来高度粘稠，其中beta葡聚糖健康成分所带来的，具有降血脂、降血糖、高饱腹的效果。',367),(4,'毛豆','毛豆，就是新鲜连荚的黄豆，晒干之后又称大豆。',123),(5,'山药','山药具有滋养强壮，助消化，敛虚汗，止泻之功效，主治脾虚腹泻、肺虚咳嗽。',56);
+/*!40000 ALTER TABLE `food` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `sport`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `sport`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `sport` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `phone` varchar(32) DEFAULT NULL,
-  `create_time` date DEFAULT NULL,
-  `job` int(11) DEFAULT NULL,
-  `address` varchar(128) DEFAULT NULL,
+  `description` varchar(512) DEFAULT NULL,
+  `consume_energy` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `sport`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'李强',1,55,'15188880000','2018-11-25',1,'江苏省南京市鼓楼区东南大学'),(2,'徐璐',0,35,'15188880001','2018-11-25',2,'江苏省南京市鼓楼区东南大学'),(3,'高晓攀',0,42,'15188880002','2018-11-25',3,'江苏省南京市鼓楼区河海大学'),(4,'王美凤',0,38,'15188880003','2018-11-25',4,'江苏省南京市江宁区南京工程学院');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `sport` WRITE;
+/*!40000 ALTER TABLE `sport` DISABLE KEYS */;
+INSERT INTO `sport` VALUES (1,'游泳','人在水的浮力作用下产生向上漂浮，凭借浮力通过肢体有规律的运动，使身体在水中有规律运动的技能',175),(2,'田径','现代田径运动的分类不同，主要包括竞走、跑、跳跃、投掷以及由跑、跳、跃、投掷的部分项目组成的全能运动，共计四十多项。',450),(3,'篮球','起源于美国马萨诸塞州，是1891年12月21日由詹姆斯·奈史密斯创造，是奥运会核心比赛项目，是以手为中心的身体对抗性体育运动。',250),(4,'自行车','对心肺、腿十分有利。',330);
+/*!40000 ALTER TABLE `sport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_food_history`
+--
+
+DROP TABLE IF EXISTS `user_food_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_food_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `food_id` int(11) DEFAULT NULL,
+  `food_quantity` int(11) DEFAULT NULL,
+  `collect_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_food_history`
+--
+
+LOCK TABLES `user_food_history` WRITE;
+/*!40000 ALTER TABLE `user_food_history` DISABLE KEYS */;
+INSERT INTO `user_food_history` VALUES (1,1,1,250,'2019-01-05'),(2,1,2,350,'2019-01-05'),(3,1,3,150,'2019-01-05'),(4,1,1,150,'2019-01-06'),(5,1,4,250,'2019-01-06'),(6,1,5,100,'2019-01-06');
+/*!40000 ALTER TABLE `user_food_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -84,7 +108,7 @@ CREATE TABLE `user_index` (
   `index_content` int(11) DEFAULT NULL,
   `collect_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,8 +117,35 @@ CREATE TABLE `user_index` (
 
 LOCK TABLES `user_index` WRITE;
 /*!40000 ALTER TABLE `user_index` DISABLE KEYS */;
-INSERT INTO `user_index` VALUES (1,1,20,67,'2018-12-01'),(2,1,20,66,'2018-12-02'),(3,1,20,69,'2018-12-03'),(4,1,20,68,'2018-12-04'),(5,1,20,68,'2018-12-05'),(6,1,20,67,'2018-12-06'),(7,1,20,67,'2018-12-07'),(8,1,20,65,'2018-12-08'),(9,1,20,69,'2018-12-09'),(10,1,20,69,'2018-12-10'),(11,1,20,68,'2018-12-11'),(12,1,20,68,'2018-12-12'),(13,1,20,69,'2018-12-13'),(14,1,20,68,'2018-12-14'),(15,1,20,70,'2018-12-15'),(16,1,20,70,'2018-12-16'),(17,1,20,69,'2018-12-17'),(18,1,20,67,'2018-12-18'),(19,1,20,69,'2018-12-19'),(20,1,20,69,'2018-12-20'),(21,1,20,69,'2018-12-21'),(22,1,20,67,'2018-12-22'),(23,1,20,67,'2018-12-23'),(24,1,20,69,'2018-12-24'),(25,1,20,66,'2018-12-25'),(26,1,20,66,'2018-12-26'),(27,1,20,66,'2018-12-27'),(28,1,20,67,'2018-12-28'),(29,1,20,70,'2018-12-29'),(30,1,20,66,'2018-12-30'),(31,1,20,67,'2018-12-31'),(32,1,40,9,'2018-12-01'),(33,1,40,8,'2018-12-02'),(34,1,40,7,'2018-12-03'),(35,1,40,11,'2018-12-04'),(36,1,40,9,'2018-12-05'),(37,1,40,11,'2018-12-06'),(38,1,40,12,'2018-12-07'),(39,1,40,11,'2018-12-08'),(40,1,40,8,'2018-12-09'),(41,1,40,12,'2018-12-10'),(42,1,40,10,'2018-12-11'),(43,1,40,10,'2018-12-12'),(44,1,40,12,'2018-12-13'),(45,1,40,8,'2018-12-14'),(46,1,40,9,'2018-12-15'),(47,1,40,11,'2018-12-16'),(48,1,40,10,'2018-12-17'),(49,1,40,7,'2018-12-18'),(50,1,40,8,'2018-12-19'),(51,1,40,8,'2018-12-20'),(52,1,40,8,'2018-12-21'),(53,1,40,10,'2018-12-22'),(54,1,40,10,'2018-12-23'),(55,1,40,9,'2018-12-24'),(56,1,40,9,'2018-12-25'),(57,1,40,8,'2018-12-26'),(58,1,40,10,'2018-12-27'),(59,1,40,10,'2018-12-28'),(60,1,40,11,'2018-12-29'),(61,1,40,12,'2018-12-30'),(62,1,40,7,'2018-12-31');
+INSERT INTO `user_index` VALUES (1,1,1,60,'2019-01-05'),(2,1,1,65,'2019-01-06'),(3,1,2,167,'2019-01-05'),(4,1,2,168,'2019-01-06');
 /*!40000 ALTER TABLE `user_index` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_sport_history`
+--
+
+DROP TABLE IF EXISTS `user_sport_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_sport_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `sport_id` int(11) DEFAULT NULL,
+  `sport_time` int(11) DEFAULT NULL,
+  `collect_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_sport_history`
+--
+
+LOCK TABLES `user_sport_history` WRITE;
+/*!40000 ALTER TABLE `user_sport_history` DISABLE KEYS */;
+INSERT INTO `user_sport_history` VALUES (1,1,1,2,'2019-01-05'),(2,1,2,3,'2019-01-05'),(3,1,3,1,'2019-01-06'),(4,1,4,2,'2019-01-06'),(5,1,3,1,'2019-01-05'),(6,2,1,2,'2019-01-05'),(7,2,2,2,'2019-01-05'),(8,2,3,2,'2019-01-05');
+/*!40000 ALTER TABLE `user_sport_history` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -106,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-19 10:28:26
+-- Dump completed on 2019-01-06 10:21:04
